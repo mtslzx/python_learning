@@ -1,1 +1,1 @@
-ir()
+le(6)  # goto end of the world
