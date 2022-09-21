@@ -1,4 +1,4 @@
-from threading import Thread
+# from threading import Thread
 from cs1robots import *
 
 class Robot2(Robot):
@@ -117,8 +117,8 @@ load_world("/Users/hailhwan/Code/python_learning/CS/worlds/trash2.wld")
 hubo = Robot2()
 hubo.set_trace("blue")
 
-# Trash 1
-hubo.move_n_times_while(9)  # goto end of the world
+# Trash
+hubo.move_n_times_while(9)
 hubo.turn_around()
 hubo.move_n_times_while(9)
 hubo.turn_right()
