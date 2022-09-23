@@ -24,14 +24,15 @@ array	commands	return
 def solution(array, commands):  # 매우 쉬운 파이썬 스타일...
     answer = list()
     for n in range(len(commands)):  # commands의 길이만큼 반복 (commands의 길이는 1 이상 50 이하이므로.)
-        tempArray = array  # 매개변수 array를 tempArray에 저장 (원본 배열을 보존하기 위함)
-        i = commands[n][0]  # commands 이중배열에서 array를 자르기 위해 필요한 i 추출 [1]
-        j = commands[n][1]  # commands 이중배열에서 array를 자르기 위해 필요한 j 추출 [1]
-        k = commands[n][2]  # commands 이중배열에서 array를 자르고 정렬한 후 k번째 숫자 추출에 필요한 k 추출 [1]
-        tempArray = sorted(array[ i - 1 : j ])  # i - 1번째부터 j - 1번째까지 자르고 정렬하기 [2]
+        # tempArray = array  # 매개변수 array를 tempArray에 저장 (원본 배열을 보존하기 위함) -> 필요없어짐 ㅋㅋ;;
+        i = commands[n][0]  # commands 이중배열에서 array를 자르기 위해 필요한 i 추출 [*1]
+        j = commands[n][1]  # commands 이중배열에서 array를 자르기 위해 필요한 j 추출 [*1]
+        k = commands[n][2]  # commands 이중배열에서 array를 자르고 정렬한 후 k번째 숫자 추출에 필요한 k 추출 [*1]
+        tempArray = sorted(array[ i - 1 : j ])  # i - 1번째부터 j - 1번째까지 자르고 정렬하기 [*2]
         # tempArray.sort() # 자른 배열을 정렬 (sort()는 원본 배열을 정렬하므로, sorted()를 사용하는 것이 좋음)
         answer.append(tempArray[k - 1]) # array를 정렬한 후 k번째 숫자 추출 및 answer에 추가
     return answer
+
 
 
 print(solution([1, 5, 2, 6, 3, 7, 4], [[2, 5, 3], [4, 4, 1], [1, 7, 3]]))  #테스트 케이스
@@ -79,4 +80,11 @@ def cutting_array(array, i, j):  # array를 i번째부터 j번째까지 자르�
     result = array[ i - 1 : j ]  # i - 1번째부터 j - 1번째까지 자르기 [1]
     return result
 # 역시 C 스타일...
+'''
+
+# 숏코딩
+
+'''
+def solution(array, commands):
+    return list(map(lambda x:sorted(array[x[0]-1:x[1]])[x[2]-1], commands))
 '''
