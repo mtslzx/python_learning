@@ -72,6 +72,8 @@ def cutting_array(array, i, j):
         m = m + 1
     return result
 # 되게 C언어적으로 생각했었음. 이렇게 하면 안되고, slicing을 이용해야함.
+
+
 def sort(array):
     result = sorted(array)
     return result
@@ -82,7 +84,8 @@ def cutting_array(array, i, j):  # array를 i번째부터 j번째까지 자르�
 # 역시 C 스타일...
 '''
 
-# 숏코딩
+# 숏코딩?
+# 람다 함수와 map, list 함수를 사용하여 한줄로 줄일 수 있음.
 
 '''
 def solution(array, commands):
