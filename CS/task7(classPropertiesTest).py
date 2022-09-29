@@ -2,7 +2,7 @@
 from cs1robots import *
 
 
-class Robot(Robot):
+class Robot2(Robot):
     def pick_if(self):
         if (self.on_beeper()):
             self.pick_beeper()
@@ -115,21 +115,33 @@ class Robot(Robot):
             self.move()
             self.pick_while()
     
-    def move_whenLeftBlank_drop(self):  # Task 7
+   
+                
+    def moving(self):  # Make Code Clear
+        return(self)
+    
+
+        
+class roboMove(Robot):
+    def when_left_blank_drop(self):  # Task 7
         while(self.front_is_clear()):
             self.move()
-            if(self.left_is_clear()):
+            if(not self.left_is_clear()):
                 self.drop_beeper()
+    
+    pass
+class Robot3(Robot2):
+    def __init__(self):
+        super.__init__()
+        self.Move = roboMove()
 
 
 # Setup
 load_world("/Users/hailhwan/Code/python_learning/CS/worlds/rain.wld")
-hubo = Robot(avenue=3, street=6, orientation='N', beepers=10)
+hubo = Robot3(avenue=3, street=6, orientation='N', beepers=10)
 hubo.set_trace("blue")
 
 # Task
-for i in range(4):
-    hubo.move_whenLeftBlank_drop()
-    hubo.turn_right()
-hubo.move_n_times(2)
+hubo.Move.when_left_blank_drop()
+
 
