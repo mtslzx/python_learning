@@ -5,7 +5,7 @@ This repository was created to organize and archive learning progress.
 - Python 3 - 3.10
 - (CS)
 - Pillow
-- Turtle fork hubo
+- cs1robots
 - (python_challenge, make_webscraper_with_python)
 - beautifulsoap4
 - requests
