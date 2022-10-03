@@ -21,7 +21,7 @@ array	commands	return
 
 
 
-def solution(array, commands):  # 매우 쉬운 파이썬 스타일...
+def solution(array, commands):  # 매우 쉬운 파이썬 스타일...?
     answer = list()
     for n in range(len(commands)):  # commands의 길이만큼 반복 (commands의 길이는 1 이상 50 이하이므로.)
         # tempArray = array  # 매개변수 array를 tempArray에 저장 (원본 배열을 보존하기 위함) -> 필요없어짐 ㅋㅋ;;
