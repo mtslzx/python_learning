@@ -163,7 +163,7 @@ class Robot(Robot):
             self.move()
             self.turn_left()
             
-    def addition(self):
+    def addition(self):  # Task 10
         move_counter = 0  # 종료위치 초기화 설정값
         pos = 0  # 현재위치 초기화
         flag = True  # 종료위치 초기화 후 값 변환 추가 안함 플래그

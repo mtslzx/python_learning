@@ -22,8 +22,16 @@ def solution(numbers):
     for i in range(len(permu)):
         temp = ''
         for j in range(len(permu[0])):
-            temp.join(str(permu[i][j]))
-        temp_arr.append(int(temp))
+            # string = str(permu[i][j])
+            # temp.join(string)
+            temp = "".join(permu)
+            # 문자열을 안쓴는 방안을 
+            # temp = temp + str(permu[i][j])
+        # i = [6, 10, 2]
+        temp = 0
+        for index, value in enumerate(i):
+            temp += value * (10 ** index)
+        temp_arr.append(temp)
     for i in range(len(permu)):
         int(temp_arr[i])
     temp_arr.sort(reverse=True)
@@ -32,8 +40,8 @@ def solution(numbers):
     return answer
 
 
-numbers = [6, 10, 2]
-# numbers = [3, 30, 34, 5, 9]
+# numbers = [6, 10, 2]
+numbers = [3, 30, 34, 5, 9]
 print(solution(numbers))
 
 
