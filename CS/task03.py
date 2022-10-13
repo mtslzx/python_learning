@@ -34,6 +34,9 @@ result = deci_to_any(140, 8)  # Case 1  Oct -> OK
 result = deci_to_any(61, 16)  # Case 2  Hex -> OK
 result = deci_to_any(516, 10)  # Case 3  Dec -> OK
 result = deci_to_any(27, 2)  # Case 4 Bin -> OK
+result = deci_to_any(10, 12)  # Case 5 12? -> OK
+result = deci_to_any(8, 7)  # Case 6 7? -> OK
+result = deci_to_any(42, 15)  # Case 7 15? -> OK
 print(result)
 
 
