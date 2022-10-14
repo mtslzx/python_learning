@@ -1,7 +1,5 @@
-for i in range(10):
-    global Wow 
-    if(not (Wow in 'global')):
-        Wow = 3
-    Wow = Wow + 3
-
-print(Wow)
+age = 40
+if age <= 30 and age >= 50:
+    print('30살어쩌고')
+else:
+    print('50살 어쩌고')
