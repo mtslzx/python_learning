@@ -4,6 +4,8 @@ from cs1graphicsHelper import *
 # https://github.com/wellesleycs111/cs1graphicsHelper
 from time import sleep
 # Pixel Art , Train , Pinky Sunset , Counting stars , little bit dark sky , sun , sea , cloud, steam ...
+import random
+from PIL import ImageColor
 
 
 canvas = Canvas(400, 600, (119,125,183), 'Midterm Exam')
@@ -12,6 +14,46 @@ canvas = Canvas(400, 600, (119,125,183), 'Midterm Exam')
 
 # Clouds
 Clouds = Layer()
+
+# Cloud 1 Generator 63	73	155 
+for i in range(150):
+    cloud = Circle(random.randrange(10, 20))
+    cloud.move(random.randrange(-100, 310), random.randrange(0, 130))
+    cloud.setFillColor(ImageColor.getcolor("#3F499B","RGB"))
+    cloud.setBorderWidth(0)  # No border
+    Clouds.add(cloud)
+    
+# Cloud 1 Generator 63	73	155 
+for i in range(60):
+    cloud = Circle(random.randrange(13, 20))
+    cloud.move(random.randrange(-100, 160), random.randrange(-60, 140))
+    cloud.setFillColor(ImageColor.getcolor("#3F499B","RGB"))
+    cloud.setBorderWidth(0)  # No border
+    Clouds.add(cloud)
+
+# Cloud 2 Generator 89, 99, 158
+for i in range(100):
+    cloud = Circle(random.randrange(6, 14))
+    cloud.move(random.randrange(-114, 160), random.randrange(-40, 130))
+    cloud.setFillColor(ImageColor.getcolor("#59639E","RGB"))
+    cloud.setBorderWidth(0)  # No border
+    Clouds.add(cloud)
+    
+# Cloud 3 Generator 80,81,140 
+for i in range(100):
+    cloud = Circle(random.randrange(6, 12))
+    cloud.move(random.randrange(-0, 200), random.randrange(30, 100))
+    cloud.setFillColor(ImageColor.getcolor("#51518C","RGB"))
+    cloud.setBorderWidth(0)  # No border
+    Clouds.add(cloud)
+
+# Cloud 4 Generator 157,63,126
+for i in range(100):
+    cloud = Circle(random.randrange(4, 8))
+    cloud.move(random.randrange(-96, 120), random.randrange(-10, 95))
+    cloud.setFillColor(ImageColor.getcolor("#9D3F7E","RGB"))
+    cloud.setBorderWidth(0)  # No border
+    Clouds.add(cloud)
 
 
 
@@ -122,6 +164,10 @@ canvas.add(gradient)
 canvas.add(Moon)
 canvas.add(PoB)
 canvas.add(B)
+canvas.add(Clouds)
+
+# Position Reset
+Clouds.move(100,100)
 PoB.move(300,0)
 
 
