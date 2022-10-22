@@ -8,6 +8,7 @@ import random
 from PIL import ImageColor
 
 
+
 canvas = Canvas(400, 600, (119,125,183), 'Midterm Exam')
 
 # Background
