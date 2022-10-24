@@ -16,26 +16,42 @@ canvas = Canvas(400, 600, (119,125,183), 'Midterm Exam')
 # Clouds
 Clouds = Layer()
 
-# Cloud 1 Generator 63	73	155 
-for i in range(150):
-    cloud = Circle(random.randrange(10, 20))
-    cloud.move(random.randrange(-100, 310), random.randrange(0, 130))
-    cloud.setFillColor(ImageColor.getcolor("#3F499B","RGB"))
+#3F499B #59639E
+# Cloud 1 Generator 63	73	155 (mid) 
+Cloud1 = Layer()
+MidCloud1 = Circle(18)
+MidCloud1.setFillColor(ImageColor.getcolor("#3F499B","RGB"))
+MidCloud1.setBorderWidth(0)  # No border
+Cloud1.add(MidCloud1)
+for i in range(90):
+    cloud = Circle(random.randrange(9, 18))
+    cloud.move(random.randrange(-30, 50), random.randrange(0, 60))
+    cloud.setFillColor(ImageColor.getcolor("#59639E","RGB"))
     cloud.setBorderWidth(0)  # No border
-    Clouds.add(cloud)
-    
-# Cloud 1 Generator 63	73	155 
+    cloud.move(random.randrange(-50, 50), random.randrange(-10, 10))  # Make Position random
+    Cloud1.add(cloud)
+
+# Cloud 1 Generator 63	73	155 (side)
 for i in range(60):
     cloud = Circle(random.randrange(13, 20))
-    cloud.move(random.randrange(-100, 160), random.randrange(-60, 140))
-    cloud.setFillColor(ImageColor.getcolor("#3F499B","RGB"))
+    cloud.move(random.randrange(-100, 160), random.randrange(45, 89))
+    cloud.setFillColor(ImageColor.getcolor("#8EA3E7","RGB"))
     cloud.setBorderWidth(0)  # No border
-    Clouds.add(cloud)
+    cloud.move(random.randrange(-50, 50), random.randrange(-10, 10))  # Make Position random
+    Cloud1.add(cloud)
+    
+Cloud1.scale(random.uniform(0.5, 0.7))
+Clouds.add(Cloud1)
 
+
+
+
+
+'''
 # Cloud 2 Generator 89, 99, 158
 for i in range(100):
     cloud = Circle(random.randrange(6, 14))
-    cloud.move(random.randrange(-114, 160), random.randrange(-40, 130))
+    cloud.move(random.randrange(-114, 160), random.randrange(72, 130))
     cloud.setFillColor(ImageColor.getcolor("#59639E","RGB"))
     cloud.setBorderWidth(0)  # No border
     Clouds.add(cloud)
@@ -43,7 +59,7 @@ for i in range(100):
 # Cloud 3 Generator 80,81,140 
 for i in range(100):
     cloud = Circle(random.randrange(6, 12))
-    cloud.move(random.randrange(-0, 200), random.randrange(30, 100))
+    cloud.move(random.randrange(-0, 200), random.randrange(115, 148))
     cloud.setFillColor(ImageColor.getcolor("#51518C","RGB"))
     cloud.setBorderWidth(0)  # No border
     Clouds.add(cloud)
@@ -51,11 +67,11 @@ for i in range(100):
 # Cloud 4 Generator 157,63,126
 for i in range(100):
     cloud = Circle(random.randrange(4, 8))
-    cloud.move(random.randrange(-96, 120), random.randrange(-10, 95))
+    cloud.move(random.randrange(-96, 120), random.randrange(136, 185))
     cloud.setFillColor(ImageColor.getcolor("#9D3F7E","RGB"))
     cloud.setBorderWidth(0)  # No border
     Clouds.add(cloud)
-
+'''
 
 
 # Moon
@@ -117,8 +133,66 @@ gradient5.move(200, 550)
 gradient5.setBorderWidth(0)  # No border
 gradient.add(gradient5)
 
+gradient6 = Rectangle(400, 400)
+gradient6.setFillColor(ImageColor.getcolor("#E54A79","RGB"))
+gradient6.move(200, 600)
+gradient6.setBorderWidth(0)  # No border
+gradient.add(gradient6)
+
+gradient7 = Rectangle(400, 400)
+gradient7.setFillColor(ImageColor.getcolor("#FEB87B","RGB"))
+gradient7.move(200, 550)
+gradient7.setBorderWidth(0)  # No border
+gradient.add(gradient7)
+
+gradient8 = Rectangle(400, 400)
+gradient8.setFillColor(ImageColor.getcolor("#FC713E","RGB"))
+gradient8.move(200, 600)
+gradient8.setBorderWidth(0)  # No border
+gradient.add(gradient8)
+
+
+# Make A Mountain #ED553E #810444 #410C42 #190946 #0C0D0B
+Mountains = Layer()
+
+
+mountain = Polygon(Point(20, 458), Point(random.randrange(65, 92), random.randrange(380, 400)), Point(random.randrange(110, 129), random.randrange(394, 447)), Point(random.randrange(147, 159), random.randrange(370, 450)), Point(random.randrange(187, 204), random.randrange(388, 411)), Point(random.randrange(221, 234), random.randrange(407, 421)), Point(random.randrange(237, 251), random.randrange(418, 442)), Point(300, 458))
+mountain.setFillColor(ImageColor.getcolor("#ED553E","RGB"))
+mountain.setBorderWidth(0)  # No border
+# mountain.adjustReference(140, 458)  # Make AnchorPoint to center bottom corner. for make depth color
+mountain.adjustReference(120,0)  # Make AnchorPoint to center bottom corner. for make depth color
+print(mountain.getReferencePoint())
+
+
+mountain2 = mountain.clone()  # Create new Mountain front side
+mountain2.setFillColor(ImageColor.getcolor("#410C42","RGB"))
+# mountain2.scale(0.8)  # Make Depth
+mountain2.stretch(1, 0.9) # Make Depth
+
+mountain3 = mountain.clone()  # Create new Mountain front side
+mountain3.setFillColor(ImageColor.getcolor("#190946","RGB"))
+# mountain3.scale(0.8)  # Make Depth
+mountain3.stretch(1, 0.75) # Make Depth
+
+mountain4 = mountain.clone()  # Create new Mountain front side
+mountain4.setFillColor(ImageColor.getcolor("#0C0D0B","RGB"))
+# mountain4.scale(0.8)  # Make Depth
+mountain4.stretch(1, 0.65) # Make Depth
+
+print(mountain.getReferencePoint())
+print(mountain2.getReferencePoint())
+
+Mountains.add(mountain)
+Mountains.add(mountain2)
+Mountains.add(mountain3)
+Mountains.add(mountain4)
+
+
+
 # Foreground
 # Bridge
+
+
 
 
 B = Layer()
@@ -163,17 +237,22 @@ for i in range(30):
 # Add layer to canvas
 canvas.add(gradient)
 canvas.add(Moon)
+canvas.add(Mountains)
 canvas.add(PoB)
 canvas.add(B)
 canvas.add(Clouds)
 
 # Position Reset
-Clouds.move(100,100)
+Clouds.move(100,330)
 PoB.move(300,0)
 
 
 for i in range(1000):
     PoB.move(1, 0)
+    if i % 100 == 0:
+        Clouds.move(1,0)
+    if i % 500 == 0:
+        Mountains.move(1, 0)
     sleep(0.05)
 
 
@@ -188,4 +267,45 @@ markClicks(canvas)
 
 for i in range(1000):
     PoB.move(10, 0)
-    sleep(0.1)
+    
+    sleep(0.01)
+    
+    
+    
+
+
+
+
+
+# Code Archive
+
+'''
+# Clouds
+Clouds = Layer()
+
+# Cloud 1 Generator 63	73	155 (mid)
+Cloud1 = Layer()
+MidCloud1 = Circle(18)
+MidCloud1.setFillColor(ImageColor.getcolor("#3F499B","RGB"))
+MidCloud1.setBorderWidth(0)  # No border
+Cloud1.add(MidCloud1)
+for i in range(90):
+    cloud = Circle(random.randrange(9, 18))
+    cloud.move(random.randrange(-30, 50), random.randrange(0, 60))
+    cloud.setFillColor(ImageColor.getcolor("#3F499B","RGB"))
+    cloud.setBorderWidth(0)  # No border
+    cloud.move(random.randrange(-50, 50), random.randrange(-10, 10))  # Make Position random
+    Cloud1.add(cloud)
+
+# Cloud 1 Generator 63	73	155 (side)
+for i in range(60):
+    cloud = Circle(random.randrange(13, 20))
+    cloud.move(random.randrange(-100, 160), random.randrange(45, 89))
+    cloud.setFillColor(ImageColor.getcolor("#3F499B","RGB"))
+    cloud.setBorderWidth(0)  # No border
+    cloud.move(random.randrange(-50, 50), random.randrange(-10, 10))  # Make Position random
+    Cloud1.add(cloud)
+
+Cloud1.scale(0.7)
+Clouds.add(Cloud1)
+'''
