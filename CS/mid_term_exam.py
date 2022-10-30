@@ -7,11 +7,41 @@ from time import sleep
 import random
 from PIL import ImageColor
 
+# = MEMO =
+# 1. Canvas
+# 2. Layer
+# 3. Rectangle
+# 4. Circle
+# 5. Polygon
+# 6. Path
+# 7. Text
+# 8. Image
+# 9. Group
+# 10. Animation
+# 11. Event
+# 12. Color
+#   - from PIL import ImageColor
+#   - ImageColor.getcolor("#HEXNUM","RGB")
+# 13. Point
+# 14. Transform
+#   - Stars -> (0,0) ~ (0,150)
+#   - Moon -> (310,60)
+#   - Cloud ->
+#   - Sea ->
+#   - Train -> (0, 425) ~ (400, 436)
+#   - Sun ->
+#   - Steam ->
+#   - Sky ->
+#   - Grass ->
+#   - Bridge -> (0,450) ~ (0,600)
+#   - Mountain -> (0,400) ~ (0,450)
+# 15. Helper
 
 
+# Main Canvas
 canvas = Canvas(400, 600, (119,125,183), 'Midterm Exam')
 
-# Background
+# ==== Background ====
 
 # Clouds
 Clouds = Layer()
@@ -43,10 +73,6 @@ for i in range(60):
 Cloud1.scale(random.uniform(0.5, 0.7))
 Clouds.add(Cloud1)
 
-
-
-
-
 '''
 # Cloud 2 Generator 89, 99, 158
 for i in range(100):
@@ -73,8 +99,7 @@ for i in range(100):
     Clouds.add(cloud)
 '''
 
-
-# Moon
+# = Moon =
 Moon = Layer()
 # moon.add(Circle(50).setFillColor((137, 151, 149))) Didn't work right...
 
@@ -90,17 +115,41 @@ moon2.setBorderWidth(0)  # No border
 moon2.stretch(0.85, 1, )  # Shear to make moon look like a moon
 Moon.add(moon2)  # Add to moon layer
 
-
 Moon.rotate(-45)  # Rotate Moon
-Moon.move(310, 60)  # Move Moon to (100, 100)
+Moon.move(310, 60)  # Move Moon
 Moon.scale(0.7)  # Scale Moon to 50%
 
+# = Stars =
+# Star Generator
+Stars = Layer()
+
+# Little Star Generator
+for i in range(10):
+    Star = Layer()
+    star = Circle(10);star_ = Circle(10)
+    star.stretch(4, 1);star_.stretch(1, 4)
+    star.setFillColor(ImageColor.getcolor("#FFFFFF","RGB"));star_.setFillColor(ImageColor.getcolor("#FFFFFF","RGB"))
+    star.setBorderWidth(0);star_.setBorderWidth(0)
+    Star.add(star);Star.add(star_)
+    Star.scale(random.uniform(0.05, 0.07))
+    Star.move(random.randrange(10, 440),random.randrange(10,140))  # Move Star to random position (Margin 10px)
+    Stars.add(Star)
+
+# Big Star Generator
+for i in range(5):
+    Star = Layer()
+    star = Circle(10);star_ = Circle(10)
+    star.stretch(4, 1);star_.stretch(1, 4)
+    star.setFillColor(ImageColor.getcolor("#FFFFFF","RGB"));star_.setFillColor(ImageColor.getcolor("#FFFFFF","RGB"))
+    star.setBorderWidth(0);star_.setBorderWidth(0)
+    Star.add(star);Star.add(star_)
+    #Star.rotate(random.randrange(0,360))
+    Star.scale(random.uniform(0.07, 0.25))
+    Star.move(random.randrange(0, 270),random.randrange(10,140))  # Move Star to random position (Margin 10px)
+    Stars.add(Star)
 
 
-
-
-
-# Make Gradient
+# = Make Gradient =
 gradient = Layer()
 
 gradient1 = Rectangle(400, 400)
@@ -152,10 +201,8 @@ gradient8.setBorderWidth(0)  # No border
 gradient.add(gradient8)
 
 
-# Make A Mountain #ED553E #810444 #410C42 #190946 #0C0D0B
+# = Make A Mountain = #ED553E #810444 #410C42 #190946 #0C0D0B
 Mountains = Layer()
-
-
 mountain = Polygon(Point(20, 458), Point(random.randrange(65, 92), random.randrange(380, 400)), Point(random.randrange(110, 129), random.randrange(394, 447)), Point(random.randrange(147, 159), random.randrange(370, 450)), Point(random.randrange(187, 204), random.randrange(388, 411)), Point(random.randrange(221, 234), random.randrange(407, 421)), Point(random.randrange(237, 251), random.randrange(418, 442)), Point(300, 458))
 mountain.setFillColor(ImageColor.getcolor("#ED553E","RGB"))
 mountain.setBorderWidth(0)  # No border
@@ -187,14 +234,19 @@ Mountains.add(mountain2)
 Mountains.add(mountain3)
 Mountains.add(mountain4)
 
+# = Seas =
+Seas = Layer()
+sea_base = Rectangle(400, 200)
+sea_base.setBorderWidth(0)  # No border
+sea_base.setFillColor(ImageColor.getcolor("#3259A5","RGB"))
 
 
-# Foreground
-# Bridge
+Seas.add(sea_base)
+Seas.move(200,650)
 
+# ==== Foreground ====
 
-
-
+# = Bridge =
 B = Layer()
 Bridge = Rectangle(1400, 30)
 Bridge.moveTo(0, 465)
@@ -222,31 +274,87 @@ for i in range(30):
     PoB.add(pillar)
     
 
-# Train
-
-# Steam
-
-
-
-# Zoom in to train
-# inside of train
+# = Train =
+Trains = Layer()
+# Main Train
+MTrain = Layer()
 
 
 
 
-# Add layer to canvas
+train_main = Rectangle(60, 25)
+train_main.setBorderWidth(0)  # No border
+train_main.setFillColor(ImageColor.getcolor("#190A09","RGB"))
+
+train_mainUpper = Rectangle(50, 10)
+train_mainUpper.setBorderWidth(0)  # No border
+train_mainUpper.setFillColor(ImageColor.getcolor("#190A09","RGB"))
+train_mainUpper.move(0, -11)
+
+
+
+MTrain.add(train_main);MTrain.add(train_mainUpper)
+
+MTrain.move(130, 436)
+Trains.add(MTrain)
+# Train Cabin Generator
+
+for i in range(3):  # Make N Train Cabins. You can adjust this value to make more or less cabins.
+    Train = Layer()
+    train_cabin = Rectangle(70, 25);train_cabin_ = Rectangle(70, 25);train_cabin__ = Rectangle(70, 25)
+    train_cabin.setFillColor(ImageColor.getcolor("#410D42","RGB")) #410D42  # Set Cabin Color
+    train_cabin_.setFillColor(ImageColor.getcolor("#190946","RGB")) #190946  # Set Cabin Color
+    train_cabin__.setFillColor(ImageColor.getcolor("#190A09","RGB")) #090A09  # Set Cabin Color
+    train_cabin_.stretch(1, 0.90);train_cabin__.stretch(1, 0.9) # Make Depth
+    train_cabin_.move(0,1);train_cabin__.move(0,3)  # Make Depth
+    train_window = Rectangle(17, 7)
+    train_window.setFillColor(ImageColor.getcolor("#FDA22B","RGB"))  # Set Window Color
+    train_window.move(-20,-3)
+    train_window_ = train_window.clone()
+    train_window_.move(20,0)
+    train_window__ = train_window_.clone()
+    train_window__.move(20,0)
+    train_connectingRod = Rectangle(5, 5)
+    train_connectingRod.setFillColor(ImageColor.getcolor("#190A09","RGB"))  # Set Connecting Rod Color
+    train_connectingRod.move(-38, 8)
+    # No Border
+    train_cabin.setBorderWidth(0);train_cabin_.setBorderWidth(0);train_cabin__.setBorderWidth(0)
+    train_window.setBorderWidth(0);train_window_.setBorderWidth(0);train_window__.setBorderWidth(0)
+    train_connectingRod.setBorderWidth(0)
+    # Add to Train Layer
+    Train.add(train_cabin);Train.add(train_cabin_);Train.add(train_cabin__)
+    Train.add(train_window);Train.add(train_window_);Train.add(train_window__)
+    Train.add(train_connectingRod)
+    Train.move(200 + (75 * i), 436)  # move For make N trains
+    Trains.add(Train) # Add to Trains Layer
+
+
+# = Steam =
+
+
+
+# == Zoom in to train ==
+# == inside of train ==
+
+
+
+
+# === Add layer to canvas ===
 canvas.add(gradient)
+canvas.add(Stars)
 canvas.add(Moon)
+canvas.add(Seas)
 canvas.add(Mountains)
 canvas.add(PoB)
 canvas.add(B)
 canvas.add(Clouds)
+canvas.add(Trains)
 
 # Position Reset
 Clouds.move(100,330)
 PoB.move(300,0)
 
-
+# = Animation =
 for i in range(1000):
     PoB.move(1, 0)
     if i % 100 == 0:
@@ -255,20 +363,15 @@ for i in range(1000):
         Mountains.move(1, 0)
     sleep(0.05)
 
-
+# = Helper =
 drawReferencePoints(canvas)
 drawGrid(canvas, 100)
 markClicks(canvas)
 
 
 
-# Animation
+# ==== Animation ====
 
-
-for i in range(1000):
-    PoB.move(10, 0)
-    
-    sleep(0.01)
     
     
     
@@ -278,7 +381,6 @@ for i in range(1000):
 
 
 # Code Archive
-
 '''
 # Clouds
 Clouds = Layer()
@@ -309,3 +411,4 @@ for i in range(60):
 Cloud1.scale(0.7)
 Clouds.add(Cloud1)
 '''
+    

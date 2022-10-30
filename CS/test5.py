@@ -3,24 +3,24 @@ from cs1graphicsHelper import *
 from PIL import ImageColor
 import random
 
-paper = Canvas()
-paper.setWidth(400)
-paper.setHeight(600)
-paper.setBackgroundColor(ImageColor.getcolor("#777DB7","RGB"))
-# paper.setBackgroundColor('skyblue')
-paper.setTitle('My World')
+canvas = Canvas()
+canvas.setWidth(400)
+canvas.setHeight(600)
+canvas.setBackgroundColor(ImageColor.getcolor("#777DB7","RGB"))
+# canvas.setBackgroundColor('skyblue')
+canvas.setTitle('My World')
 
 '''
 # sun = Circle(30)
 # sun.setFillColor('yellow')
 # sun.move(250, 50)
-# paper.add(sun)
+# canvas.add(sun)
 
 # spl = Spline(Point(50,80), Point(30,140), Point(70,140))
 # cspl = ClosedSpline(Point(50,80), Point(30,140), Point(70,140))
 # spl.move(100,0)
-# paper.add(cspl)
-# paper.add(spl)
+# canvas.add(cspl)
+# canvas.add(spl)
 '''
 
 # ==== Gradient Generator ================================================
@@ -35,7 +35,8 @@ palete = (  # You can add more colors. Just add color hex text.
     "#D75E88", 
     "#E54A79", 
     "#FEB87B", 
-    "#FC713E"
+    "#FC713E",
+    "#AAAAAA"
     )
 # Gradient generator
 for idx, hex in enumerate(palete):
@@ -46,60 +47,8 @@ for idx, hex in enumerate(palete):
     Gradient.add(gradient_)
 # Reset pos & add to canvas
 Gradient.move(200, 200)  # Move a whole Gradient
-paper.add(Gradient)
+canvas.add(Gradient)
 
-
-'''
-# gradient1 = Rectangle(400, 400)
-# gradient1.setFillColor(ImageColor.getcolor("#8F7BA3","RGB"))
-# gradient1.move(200, 350)
-# gradient1.setBorderWidth(0)  # No border
-# gradient.add(gradient1)
-
-# gradient2 = Rectangle(400, 400)
-# gradient2.setFillColor(ImageColor.getcolor("#AC749B","RGB"))
-# gradient2.move(200, 400)
-# gradient2.setBorderWidth(0)  # No border
-# gradient.add(gradient2)
-
-# gradient3 = Rectangle(400, 400)
-# gradient3.setFillColor(ImageColor.getcolor("#BC688F","RGB"))
-# gradient3.move(200, 450)
-# gradient3.setBorderWidth(0)  # No border
-# gradient.add(gradient3)
-
-# gradient4 = Rectangle(400, 400)
-# gradient4.setFillColor(ImageColor.getcolor("#D75E88","RGB"))
-# gradient4.move(200, 500)
-# gradient4.setBorderWidth(0)  # No border
-# gradient.add(gradient4)
-
-# gradient5 = Rectangle(400, 400)
-# gradient5.setFillColor(ImageColor.getcolor("#E54A79","RGB"))
-# gradient5.move(200, 550)
-# gradient5.setBorderWidth(0)  # No border
-# gradient.add(gradient5)
-
-# gradient6 = Rectangle(400, 400)
-# gradient6.setFillColor(ImageColor.getcolor("#E54A79","RGB"))
-# gradient6.move(200, 600)
-# gradient6.setBorderWidth(0)  # No border
-# gradient.add(gradient6)
-
-# gradient7 = Rectangle(400, 400)
-# gradient7.setFillColor(ImageColor.getcolor("#FEB87B","RGB"))
-# gradient7.move(200, 550)
-# gradient7.setBorderWidth(0)  # No border
-# gradient.add(gradient7)
-
-# gradient8 = Rectangle(400, 400)
-# gradient8.setFillColor(ImageColor.getcolor("#FC713E","RGB"))
-# gradient8.move(200, 600)
-# gradient8.setBorderWidth(0)  # No border
-# gradient.add(gradient8)
-
-# paper.add(gradient)
-'''
 
 # ==== Star Generator ====================================================
 # Make a star layer
@@ -126,7 +75,7 @@ for i in range(10):
     Star. move(random.randrange(0, 400),random.randrange(0,150))
     Stars.add(Star)
 
-paper.add(Stars)
+canvas.add(Stars)
 
 
 
@@ -175,13 +124,89 @@ for i in range(30):
     
 Cloud1.scale(random.uniform(0.5, 0.7))
 Cloud1.move(150, 100)
-paper.add(Cloud1)
+canvas.add(Cloud1)
 
 # Cloud1.shear(random.uniform(0.1, 0.5))
 
-drawReferencePoints(paper)
-drawGrid(paper, 100)
-markClicks(paper)
+
+
+
+# = Train =
+Trains = Layer()
+# Main Train
+MTrain = Layer()
+
+
+
+
+train_main = Rectangle(60, 25)
+train_main.setBorderWidth(0)  # No border
+train_main.setFillColor(ImageColor.getcolor("#190A09","RGB"))
+
+train_mainUpper = Rectangle(50, 10)
+train_mainUpper.setBorderWidth(0)  # No border
+train_mainUpper.setFillColor(ImageColor.getcolor("#190A09","RGB"))
+train_mainUpper.move(0, -11)
+
+
+
+MTrain.add(train_main);MTrain.add(train_mainUpper)
+
+MTrain.move(130, 436)
+Trains.add(MTrain)
+# Train Cabin Generator
+
+for i in range(3):  # Make N Train Cabins. You can adjust this value to make more or less cabins.
+    Train = Layer()
+    train_cabin = Rectangle(70, 25);train_cabin_ = Rectangle(70, 25);train_cabin__ = Rectangle(70, 25)
+    train_cabin.setFillColor(ImageColor.getcolor("#410D42","RGB")) #410D42  # Set Cabin Color
+    train_cabin_.setFillColor(ImageColor.getcolor("#190946","RGB")) #190946  # Set Cabin Color
+    train_cabin__.setFillColor(ImageColor.getcolor("#190A09","RGB")) #090A09  # Set Cabin Color
+    train_cabin_.stretch(1, 0.90);train_cabin__.stretch(1, 0.9) # Make Depth
+    train_cabin_.move(0,1);train_cabin__.move(0,3)  # Make Depth
+    train_window = Rectangle(17, 7)
+    train_window.setFillColor(ImageColor.getcolor("#FDA22B","RGB"))  # Set Window Color
+    train_window.move(-20,-3)
+    train_window_ = train_window.clone()
+    train_window_.move(20,0)
+    train_window__ = train_window_.clone()
+    train_window__.move(20,0)
+    train_connectingRod = Rectangle(5, 5)
+    train_connectingRod.setFillColor(ImageColor.getcolor("#190A09","RGB"))  # Set Connecting Rod Color
+    train_connectingRod.move(-38, 8)
+    # No Border
+    train_cabin.setBorderWidth(0);train_cabin_.setBorderWidth(0);train_cabin__.setBorderWidth(0)
+    train_window.setBorderWidth(0);train_window_.setBorderWidth(0);train_window__.setBorderWidth(0)
+    train_connectingRod.setBorderWidth(0)
+    # Add to Train Layer
+    Train.add(train_cabin);Train.add(train_cabin_);Train.add(train_cabin__)
+    Train.add(train_window);Train.add(train_window_);Train.add(train_window__)
+    Train.add(train_connectingRod)
+    Train.move(200 + (75 * i), 436)  # move For make N trains
+    Trains.add(Train) # Add to Trains Layer
+
+canvas.add(Trains)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+drawReferencePoints(canvas)
+drawGrid(canvas, 100)
+markClicks(canvas)
 
 
 
@@ -213,5 +238,5 @@ Star.add(star_)
 Star.scale(0.3)
 Star. move(200,200)
 
-paper.add(Star)
+canvas.add(Star)
 '''
