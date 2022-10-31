@@ -149,67 +149,49 @@ for i in range(5):
     Stars.add(Star)
 
 
-# = Make Gradient =
-gradient = Layer()
-
-gradient1 = Rectangle(400, 400)
-gradient1.setFillColor((143,123,163))
-gradient1.move(200, 350)
-gradient1.setBorderWidth(0)  # No border
-gradient.add(gradient1)
-
-gradient2 = Rectangle(400, 400)
-gradient2.setFillColor((172,116,155	))
-gradient2.move(200, 400)
-gradient2.setBorderWidth(0)  # No border
-gradient.add(gradient2)
-
-gradient3 = Rectangle(400, 400)
-gradient3.setFillColor((188,104,143	))
-gradient3.move(200, 450)
-gradient3.setBorderWidth(0)  # No border
-gradient.add(gradient3)
-
-gradient4 = Rectangle(400, 400)
-gradient4.setFillColor((215,94,136))
-gradient4.move(200, 500)
-gradient4.setBorderWidth(0)  # No border
-gradient.add(gradient4)
-
-gradient5 = Rectangle(400, 400)
-gradient5.setFillColor((234,83,121))
-gradient5.move(200, 550)
-gradient5.setBorderWidth(0)  # No border
-gradient.add(gradient5)
-
-gradient6 = Rectangle(400, 400)
-gradient6.setFillColor(ImageColor.getcolor("#E54A79","RGB"))
-gradient6.move(200, 600)
-gradient6.setBorderWidth(0)  # No border
-gradient.add(gradient6)
-
-gradient7 = Rectangle(400, 400)
-gradient7.setFillColor(ImageColor.getcolor("#FEB87B","RGB"))
-gradient7.move(200, 550)
-gradient7.setBorderWidth(0)  # No border
-gradient.add(gradient7)
-
-gradient8 = Rectangle(400, 400)
-gradient8.setFillColor(ImageColor.getcolor("#FC713E","RGB"))
-gradient8.move(200, 600)
-gradient8.setBorderWidth(0)  # No border
-gradient.add(gradient8)
+# ==== Gradient Generator ================================================
+# Make a gradient layer
+Gradient = Layer()
+# Adjustable Variable
+offset = 100  # Offset of gradient start point
+dense = 30  # You can adjust this value. Make that looks beautiful. bigger -> less dense
+palete = (  # You can add more colors. Just add color hex text.
+    "#8F7BA3", 
+    "#AC749B", 
+    "#BC688F", 
+    "#D75E88", 
+    "#E54A79", 
+    "#f16371",
+    "#f87c6e",
+    "#fc946f",
+    "#feac75",
+    "#FEB87B", 
+    "#feaa6b",
+    "#fd9b5c",
+    "#fd8b4e",
+    "#fc7a43",
+    "#FC713E",
+    "#AAAAAA"
+    )
+# Gradient generator
+for idx, hex in enumerate(palete):
+    gradient_ = Rectangle(400, 400)  # Adjust this with your canvas size.
+    gradient_.setFillColor(ImageColor.getcolor(hex,"RGB"))  # Thanks to PIL :)
+    gradient_.move(0, idx*dense)
+    gradient_.setBorderWidth(0)  # No border
+    Gradient.add(gradient_)
+# Reset pos & add to canvas
+Gradient.move(200, 200 + offset)  # Move a whole Gradient
 
 
 # = Make A Mountain = #ED553E #810444 #410C42 #190946 #0C0D0B
 Mountains = Layer()
-mountain = Polygon(Point(20, 458), Point(random.randrange(65, 92), random.randrange(380, 400)), Point(random.randrange(110, 129), random.randrange(394, 447)), Point(random.randrange(147, 159), random.randrange(370, 450)), Point(random.randrange(187, 204), random.randrange(388, 411)), Point(random.randrange(221, 234), random.randrange(407, 421)), Point(random.randrange(237, 251), random.randrange(418, 442)), Point(300, 458))
+mountain = Polygon(Point(20, 458), Point(random.randrange(65, 92), random.randrange(380, 400)), Point(random.randrange(110, 129), random.randrange(394, 427)), Point(random.randrange(147, 159), random.randrange(310, 341)), Point(random.randrange(187, 204), random.randrange(346, 411)), Point(random.randrange(221, 234), random.randrange(407, 421)), Point(random.randrange(237, 251), random.randrange(418, 442)), Point(300, 458))
 mountain.setFillColor(ImageColor.getcolor("#ED553E","RGB"))
 mountain.setBorderWidth(0)  # No border
 # mountain.adjustReference(140, 458)  # Make AnchorPoint to center bottom corner. for make depth color
 mountain.adjustReference(120,0)  # Make AnchorPoint to center bottom corner. for make depth color
 print(mountain.getReferencePoint())
-
 
 mountain2 = mountain.clone()  # Create new Mountain front side
 mountain2.setFillColor(ImageColor.getcolor("#410C42","RGB"))
@@ -234,6 +216,21 @@ Mountains.add(mountain2)
 Mountains.add(mountain3)
 Mountains.add(mountain4)
 
+# TEST
+Mountains.move(0, 84) 
+
+# = Sun =
+Sun = Layer()
+sun = Circle(60)
+sun.setBorderWidth(2)
+sun.setFillColor(ImageColor.getcolor("#F9FDF4","RGB"))
+sun.setBorderColor(ImageColor.getcolor("#FEB77C","RGB"))
+sun.move(200, 430)
+Sun.add(sun)
+
+
+
+
 # = Seas =
 Seas = Layer()
 sea_base = Rectangle(400, 200)
@@ -242,7 +239,7 @@ sea_base.setFillColor(ImageColor.getcolor("#3259A5","RGB"))
 
 
 Seas.add(sea_base)
-Seas.move(200,650)
+Seas.move(200,640)
 
 # ==== Foreground ====
 
@@ -340,28 +337,50 @@ for i in range(3):  # Make N Train Cabins. You can adjust this value to make mor
 
 
 # === Add layer to canvas ===
-canvas.add(gradient)
-canvas.add(Stars)
-canvas.add(Moon)
-canvas.add(Seas)
-canvas.add(Mountains)
-canvas.add(PoB)
-canvas.add(B)
-canvas.add(Clouds)
-canvas.add(Trains)
+Background = Layer()
+Foreground = Layer()
+
+Background.add(Gradient)
+Background.add(Sun)
+Background.add(Stars)
+Background.add(Moon)
+Background.add(Seas)
+Background.add(Mountains)
+Background.add(Clouds)
+Foreground.add(PoB)
+Foreground.add(B)
+Foreground.add(Trains)
+
+
+canvas.add(Background)
+canvas.add(Foreground)
+
 
 # Position Reset
 Clouds.move(100,330)
 PoB.move(300,0)
 
+# Test
+Moon.move(0, -100)
+Stars.move(0,-100)
+
+
 # = Animation =
-for i in range(1000):
+for i in range(100):
     PoB.move(1, 0)
-    if i % 100 == 0:
-        Clouds.move(1,0)
-    if i % 500 == 0:
-        Mountains.move(1, 0)
+    # if i % 100 == 0:
+    #     Clouds.move(1,0)
+    Mountains.move(0.05, 0)
+    Sun.move(0.001,0)
+    # if i % 50 == 0:
+     
     sleep(0.05)
+    
+for i in range(1000):
+    Background.move(0,1)
+    Foreground.move(0,2)
+    sleep(0.05)
+    
 
 # = Helper =
 drawReferencePoints(canvas)
@@ -412,3 +431,92 @@ Cloud1.scale(0.7)
 Clouds.add(Cloud1)
 '''
     
+# Code Archive - Make Mountain
+'''
+# = Make A Mountain = #ED553E #810444 #410C42 #190946 #0C0D0B
+Mountains = Layer()
+mountain = Polygon(Point(20, 458), Point(random.randrange(65, 92), random.randrange(380, 400)), Point(random.randrange(110, 129), random.randrange(394, 447)), Point(random.randrange(147, 159), random.randrange(370, 450)), Point(random.randrange(187, 204), random.randrange(388, 411)), Point(random.randrange(221, 234), random.randrange(407, 421)), Point(random.randrange(237, 251), random.randrange(418, 442)), Point(300, 458))
+mountain.setFillColor(ImageColor.getcolor("#ED553E","RGB"))
+mountain.setBorderWidth(0)  # No border
+# mountain.adjustReference(140, 458)  # Make AnchorPoint to center bottom corner. for make depth color
+mountain.adjustReference(120,0)  # Make AnchorPoint to center bottom corner. for make depth color
+print(mountain.getReferencePoint())
+
+
+mountain2 = mountain.clone()  # Create new Mountain front side
+mountain2.setFillColor(ImageColor.getcolor("#410C42","RGB"))
+# mountain2.scale(0.8)  # Make Depth
+mountain2.stretch(1, 0.9) # Make Depth
+
+mountain3 = mountain.clone()  # Create new Mountain front side
+mountain3.setFillColor(ImageColor.getcolor("#190946","RGB"))
+# mountain3.scale(0.8)  # Make Depth
+mountain3.stretch(1, 0.75) # Make Depth
+
+mountain4 = mountain.clone()  # Create new Mountain front side
+mountain4.setFillColor(ImageColor.getcolor("#0C0D0B","RGB"))
+# mountain4.scale(0.8)  # Make Depth
+mountain4.stretch(1, 0.65) # Make Depth
+
+print(mountain.getReferencePoint())
+print(mountain2.getReferencePoint())
+
+Mountains.add(mountain)
+Mountains.add(mountain2)
+Mountains.add(mountain3)
+Mountains.add(mountain4)
+'''
+
+# Code Archive - Gradient
+'''
+# = Make Gradient =
+gradient = Layer()
+
+gradient1 = Rectangle(400, 400)
+gradient1.setFillColor((143,123,163))
+gradient1.move(200, 350)
+gradient1.setBorderWidth(0)  # No border
+gradient.add(gradient1)
+
+gradient2 = Rectangle(400, 400)
+gradient2.setFillColor((172,116,155	))
+gradient2.move(200, 400)
+gradient2.setBorderWidth(0)  # No border
+gradient.add(gradient2)
+
+gradient3 = Rectangle(400, 400)
+gradient3.setFillColor((188,104,143	))
+gradient3.move(200, 450)
+gradient3.setBorderWidth(0)  # No border
+gradient.add(gradient3)
+
+gradient4 = Rectangle(400, 400)
+gradient4.setFillColor((215,94,136))
+gradient4.move(200, 500)
+gradient4.setBorderWidth(0)  # No border
+gradient.add(gradient4)
+
+gradient5 = Rectangle(400, 400)
+gradient5.setFillColor((234,83,121))
+gradient5.move(200, 550)
+gradient5.setBorderWidth(0)  # No border
+gradient.add(gradient5)
+
+gradient6 = Rectangle(400, 400)
+gradient6.setFillColor(ImageColor.getcolor("#E54A79","RGB"))
+gradient6.move(200, 600)
+gradient6.setBorderWidth(0)  # No border
+gradient.add(gradient6)
+
+gradient7 = Rectangle(400, 400)
+gradient7.setFillColor(ImageColor.getcolor("#FEB87B","RGB"))
+gradient7.move(200, 550)
+gradient7.setBorderWidth(0)  # No border
+gradient.add(gradient7)
+
+gradient8 = Rectangle(400, 400)
+gradient8.setFillColor(ImageColor.getcolor("#FC713E","RGB"))
+gradient8.move(200, 600)
+gradient8.setBorderWidth(0)  # No border
+gradient.add(gradient8)
+'''
