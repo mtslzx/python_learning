@@ -15,7 +15,8 @@ leftWall, rightWall, topWall, bottomWall = 0 + Margin, 400 - Margin, 0 + Margin,
 
 
 # Player Setting ====
-player = Rectangle(80, 15) # Center pt = 50, 10  # 히트박스 수정
+player = Rectangle(130, 28) # Center pt = 68, 14  # 히트박스 수정
+player.setBorderWidth(0)  # No border
 player.move(200,450)  # Pos reset
 
 # Ball Setting ====
@@ -158,22 +159,24 @@ for idx, pos in enumerate(brickCoordinates):  # Clone Brick With Addressed Coord
 for i in bricks:
     print(f"[DEBUG] {i} : {bricks[i].getReferencePoint()}")
     
-    
+# 벽돌 좌표를 리스트 써서 저장해놓고, 공이 벽돌에 닿으면 리스트에서 빼내서 삭제하는 방식으로 구현
+# 벽돌을 여러개 만들고 한번에 관리가 가능할까?
+# 벽돌은 무조건 100x20 사이즈로 만들고, 위치만 조정해서 여러개 만들어서 관리하는 방식으로 구현
+
 # Add to canvas
 canvas.add(ball)
 # canvas.add(brick)  # Add brick to canvas
 canvas.add(player)  # Add player to canvas
-
-player.wait()  # Wait for Clicking Player
 
 # TRAIN
 # Main Train -> Player
 Trains = Layer()
 MTrain = Layer()
 
-train_main = Rectangle(60, 25)
+train_main = Rectangle(60, 26)
 train_main.setBorderWidth(0)  # No border
 train_main.setFillColor(ImageColor.getcolor("#190A09","RGB"))
+train_main.move(0,1)
 train_mainUpper = Rectangle(50, 10)
 train_mainUpper.setBorderWidth(0)  # No border
 train_mainUpper.setFillColor(ImageColor.getcolor("#190A09","RGB"))
@@ -221,26 +224,28 @@ Trains.add(Train) # Add to Trains Layer
 Trains.moveTo(0,0)
 canvas.add(Trains)
 Trains.adjustReference(168, 436)
+Trains.moveTo(468,450)
+for i in range(100):
+    Trains.move(-1,0)
+    sleep(0.01)
 # /TRAIN
 
+# Messages
+txt_click = Text("Click Train to Start", 20)
+txt_click.moveTo(200, 500)
+canvas.add(txt_click)
+
+Trains.wait()  # Wait for Clicking Player
 
 
 
-
-
-
-
-# 벽돌 좌표를 리스트 써서 저장해놓고, 공이 벽돌에 닿으면 리스트에서 빼내서 삭제하는 방식으로 구현
-# 벽돌을 여러개 만들고 한번에 관리가 가능할까?
-# 벽돌은 무조건 100x20 사이즈로 만들고, 위치만 조정해서 여러개 만들어서 관리하는 방식으로 구현
-    
-    
 # drawReferencePoints(canvas)
 # drawGrid(canvas, 100)
 # markClicks(canvas)
 
 # Reset Variables
 Score = 0
+Life = 3
 RandomMin = 1  # 일반화된 회전각도를 없애기 위해 랜덤값을 더해줌
 RandomMax = 2  # 일반화된 회전각도를 없애기 위해 랜덤값을 더해줌 -> 대신 벽에 닿을때 마진을 늘려야함
 Velocity_Accel = 1  # 재미를 위해 공의 속도를 점점 빠르게 만들어주는 변수 -> 에러가 너무 나서 못쓰겠음
@@ -252,18 +257,23 @@ X = 0 # TEST
 Y = 1 # TEST
 p1 = p2 = p3 = 0 # Particle test
 cnt1 = cnt2 = cnt3 = 0 # Particle test
+win = False
 
-
+txt_life = Text("Life : " + str(Life), 15)
+txt_life.moveTo(200, 520)
+canvas.add(txt_life)
 canvas.setAutoRefresh(True)  # Auto Refresh 함수를 찾긴 했는데 정확히 뭐하는건지는 모르겠음.
 
 while True:  # Do Forever
+    # Score Set ===
+    txt_click.setMessage("Score: " + str(Score))  # 점수 표시로 변환
+    txt_life.setMessage("Life: " + str(Life))  # 생명 표시
     # Player Move ===
     PlayerX = canvas.getMouseCoordinates().getX()  # 마우스 X좌표 저장
     PlayerY = 450  # Player Y좌표 고정
     player.moveTo(PlayerX, PlayerY)  # 마우스 좌표에 따라 플레이어 이동
     Trains.moveTo(PlayerX, PlayerY)  # Move Sprite
     # print(f"[DEBUG] Mouse:{canvas.getMouseCoordinates()} b_Xpos:{b_Xpos} b_Ypos:{b_Ypos} b_Xvel:{b_Xvel} b_Yvel:{b_Yvel} vel:{Velocity}")
-    
     
     # Ball Particles  ====
     # Particle 1
@@ -299,10 +309,16 @@ while True:  # Do Forever
         Velocity += Velocity_Accel  # 공의 속도 증가
     # Y-axis
     b_Ypos += b_Yvel  # Y축 속도에 가속값을 더해줌
-    if (b_Ypos <= topWall or b_Ypos >= bottomWall) and Ycnt == 0:  # 만약 공이 벽에 닿았을 경우
+    if (b_Ypos <= topWall) and Ycnt == 0:  # 만약 공이 벽에 닿았을 경우
         Ycnt = 5  # 에러 수정용
         b_Yvel = -b_Yvel # 공의 가속도 반전
         Velocity += Velocity_Accel  # 공의 속도 증가
+    if (b_Ypos >= bottomWall) and Ycnt == 0:
+        Ycnt = 5
+        Life -= 1
+        b_Xpos = b_Ypos =  250
+        if Life <= 0:
+            break
         
     # Trying to Catch Exception
     if b_Ypos >= bottomWall + Margin or b_Ypos <= topWall - Margin or b_Xpos >= rightWall + Margin or b_Xpos <= leftWall - Margin:
@@ -310,6 +326,7 @@ while True:  # Do Forever
         ball.moveTo(250, 250)
         b_Xvel, b_Yvel = 0, 0
         Velocity = 1
+        quit()
         
     
     
@@ -361,7 +378,7 @@ while True:  # Do Forever
     # if b_Xpos == brick.getReferencePoint().getX() and b_Ypos == brick.getReferencePoint().getY():  # 만약 공이 벽돌에 닿았을 경우
     
     # Hit player (fixed value)
-    if (PlayerX - 50 <= b_Xpos <= PlayerX + 50) and (PlayerY - 10 <= b_Ypos <= PlayerY + 10) and Pcnt == 0:
+    if (PlayerX - 68 <= b_Xpos <= PlayerX + 68) and (PlayerY - 14 <= b_Ypos <= PlayerY + 14) and Pcnt == 0:
         if PlayerX < 200:  # Player가 왼쪽에 있을 경우
             b_Xvel = -b_Xvel  # 가속도 반전
         b_Yvel = -b_Yvel  # 가속도 반전
@@ -375,11 +392,15 @@ while True:  # Do Forever
     Bcnt = 0 if Bcnt == 0 else Bcnt - 1
     # Win Game ===
     if Score >= 15:  # 100점 넘을시 종료
+        win = True
         break
     # Velocity += 0.1  # 공의 속도 증가
     sleep(0.001)
     
-
+if win == True:
+    txt_life.setMessage("You Win!")
+else:
+    txt_life.setMessage("Game Over!")
 
 
 
@@ -389,6 +410,8 @@ while True:  # Do Forever
 -> https://ai-creator.tistory.com/534
 대각선으로 완만하게 나갈때 벽 판정에서 오류가 발생함
 -> 수정 완료 (속도 높이면 다시 나갈수도..)
+@TODO: 배경 별 반짝이게 만들기
+@TODO: 
 
 
 '''

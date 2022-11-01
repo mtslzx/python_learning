@@ -39,7 +39,7 @@ from PIL import ImageColor
 
 
 # Main Canvas
-canvas = Canvas(400, 600, (119,125,183), 'Midterm Exam')
+canvas = Canvas(400, 600, (119,125,183), 'Midterm Exam - "Comet" - @i1hwan')
 
 # ==== Background ====
 
