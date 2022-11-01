@@ -8,7 +8,18 @@ import random
 from PIL import ImageColor
 
 '''
-설명 : 이 프로그램에는 어떠한 이미지도 사용되지 않았습니다! 즉, 모두 cs1graphics의 함수로 작성되었습니다.
+2022010844
+컴퓨터과학과 하일환
+설명 :
+지구로 떨어지는 혜성을 저기 사라진 별의 자리에 되돌려주러 가는 한 기차의 이야기. 
+
+혜성의 순 우리말인 ‘살별’, 평화롭게 바닷가를 거닐던 기차는 지구가 위험에 빠졌다는것을 알게 되고 그 즉시 우주로 향한다. 지구로 떨어지는 살별을 다시 우주로 보내는 긴 여정을 직접 해볼 수 있도록 만들었다.
+많은 어려움이 있지만 결국 기차는 살별을 저기 사라진 별의 자리로 되돌리는데 성공한다.
+
+이 애니메이션은 단 한 장의 이미지도 없이 모두 cs1graphics의 함수들로 구성되어있다. 그 중 구름과 산, 바다의 태양 빛 반사, 별자리, 혜성은 애니메이션을 실행 시킬 때 마다 다른 모양으로 만들어져 비슷해 보일 순 있지만, 모든게 완벽하게 똑같은 애니메이션을 다시보는것은 거의 불가능에 가깝다.
+혜성을 다시 우주로 향하게 하는 험난한 여정은 섬세한 손길을 요구한다. 단지 반응속도 뿐만이 아닌 예측도 필요하다.
+
+cs1graphics의 자체 성능의 한계로 애니메이션이 느려 보일 수 있습니다. 양해바랍니다.
 '''
 
 
@@ -606,16 +617,16 @@ Stars.move(0,-100)
 
 j = c4 = cnt4 = c9 = cnt9 = 0
 
-# =  1. Animation =
-for i in range(500):
-    PoB.move(1, 0)
+# =  1. Animation =  ( PERFORMANCE OPTIMIZED )
+for i in range(250):
+    PoB.move(2, 0)
     # if i % 100 == 0:
     #     Clouds.move(1,0)
-    Mountains.move(0.05, 0)
-    Sun.move(0.001,0)
-    Reflect.move(0.001,0)
+    Mountains.move(0.1, 0)
+    Sun.move(0.002,0)
+    Reflect.move(0.002,0)
     # if i % 50 == 0:
-    if i >= 400:
+    if i >= 200:
         Trains.move(-(0.001 + (0.01 * j * j)), 0)
         j += 1
         
@@ -629,7 +640,7 @@ for i in range(500):
         cnt9 += 1  # 살별 중복 생성 방지
     if comets1["comets{0}".format(c9)].drop(-1, 1) == True:  # 살별 생명 감소 및 삭제
         c9 += 1  # 다음 살별로 넘어가기
-    sleep(0.05)
+    sleep(0.01)
     
 # Transition
 for i in range(500):
@@ -771,28 +782,29 @@ Brick Coordinate
 # Brick Generator =================
 # Brick Painter - From Gradient Generator
 palete = (  # You can add more colors. Just add color hex text.
-    "#070707", 
-    "#12061a", 
-    "#150521", 
-    "#170529", 
-    "#180438",
-    "#170340",
-    "#160248",
-    "#150050", 
-    "#1a0154",
-    "#1e0157",
-    "#23015b",
-    "#28015f",
-    "#2c0162",
-    "#310166",
-    "#36006a",
-    "#3f0071"
+    "#937DC2", 
+    "#937DC2", 
+    "#937DC2", 
+    "#937DC2", 
+    "#937DC2",
+    "#C689C6",
+    "#C689C6",
+    "#C689C6", 
+    "#C689C6",
+    "#C689C6",
+    "#E8A0BF",
+    "#E8A0BF",
+    "#E8A0BF",
+    "#E8A0BF",
+    "#E8A0BF",
+    "#E8A0BF"
     )
 
 bricks = {}  # Thx to StackOverflow
 for idx, pos in enumerate(brickCoordinates):  # Clone Brick With Addressed Coordinates
     bricks["brick{0}".format(idx)] = Rectangle(BrickX - 10, BrickY - 5) # Center pt = 30, 10  # 히트박스 보정을 위해 좌표보다 작게 보임
     bricks["brick{0}".format(idx)].setFillColor(ImageColor.getcolor(palete[idx],"RGB"))  # Set Color
+    bricks["brick{0}".format(idx)].setBorderColor(ImageColor.getcolor("#FFFFFF","RGB"))  # Set Border Color
     bricks["brick{0}".format(idx)].move(pos[0], pos[1])  # Pos reset
     canvas.add(bricks["brick{0}".format(idx)])  # Make Variable in loop. Thx to StackOverflow
     # https://stackoverflow.com/questions/6181935/how-do-you-create-different-variable-names-while-in-a-loop
@@ -875,6 +887,7 @@ for i in range(100):
 
 # Messages
 txt_click = Text("Click Train to Start", 20)
+txt_click.setFontColor(ImageColor.getcolor("#BDC3FF","RGB"))
 txt_click.moveTo(200, 500)
 canvas.add(txt_click)
 
@@ -898,6 +911,7 @@ cnt1 = cnt2 = cnt3 = 0 # Particle test
 win = False
 
 txt_life = Text("Life : " + str(Life), 15)
+txt_life.setFontColor(ImageColor.getcolor("#3A3F6B","RGB"))
 txt_life.moveTo(200, 520)
 canvas.add(txt_life)
 canvas.setAutoRefresh(True)  # Auto Refresh 함수를 찾긴 했는데 정확히 뭐하는건지는 모르겠음.
@@ -1075,44 +1089,6 @@ enumerate를 쓰면 pos에 brickCoordinates의 2차원 리스트중 1차원 원�
 '''
 
 
-
-
-
-
-
-
-# = Helper =
-
-
-
-# ==== 2. Animation ====
-
-    
-    
-    
-
-
-
-# ============= BRICKOUT =============
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # Code Archive
 '''
 # Clouds
@@ -1233,4 +1209,37 @@ gradient8.setFillColor(ImageColor.getcolor("#FC713E","RGB"))
 gradient8.move(200, 600)
 gradient8.setBorderWidth(0)  # No border
 gradient.add(gradient8)
+'''
+
+'''
+# =  1. Animation =  (PERFORMANCE ISSUE)
+for i in range(500):
+    PoB.move(1, 0)
+    # if i % 100 == 0:
+    #     Clouds.move(1,0)
+    Mountains.move(0.05, 0)
+    Sun.move(0.001,0)
+    Reflect.move(0.001,0)
+    # if i % 50 == 0:
+    if i >= 400:
+        Trains.move(-(0.001 + (0.01 * j * j)), 0)
+        j += 1
+        
+    if c4 == cnt4:
+        comets["comets{0}".format(c4)] = Comet(random.randrange(160, 450),random.randrange(-20, 40),15, 0.27, 0.9)
+        cnt4 += 1  # 살별 중복 생성 방지
+    if comets["comets{0}".format(c4)].drop(-2, 1) == True:  # 살별 생명 감소 및 삭제
+        c4 += 1  # 다음 살별로 넘어가기
+    if c9 == cnt9:
+        comets1["comets{0}".format(c9)] = Comet(random.randrange(40, 350),random.randrange(20, 130),7, 0.11, 0.9)
+        cnt9 += 1  # 살별 중복 생성 방지
+    if comets1["comets{0}".format(c9)].drop(-1, 1) == True:  # 살별 생명 감소 및 삭제
+        c9 += 1  # 다음 살별로 넘어가기
+    sleep(0.05)
+    
+# Transition
+for i in range(500):
+    Background.move(0,1)
+    Foreground.move(0,2)
+    # sleep(0.01) waht? lag
 '''
