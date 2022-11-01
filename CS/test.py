@@ -1,4 +1,5 @@
 from cs1graphics import *
+from time import sleep
 
 paper = Canvas()
 paper.setWidth(300)
@@ -30,4 +31,9 @@ paper.add(roof)
 smoke = Path(Point(155,70), Point(150,65), Point(160,55), Point(155,50))
 paper.add(smoke)
 
+li = [2, 0.5]
 
+for i in li:
+    print(i)
+    paper.zoomView(i)
+    sleep(0.5)

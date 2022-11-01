@@ -116,7 +116,7 @@ moon2.stretch(0.85, 1, )  # Shear to make moon look like a moon
 Moon.add(moon2)  # Add to moon layer
 
 Moon.rotate(-45)  # Rotate Moon
-Moon.move(310, -360)  # Move Moon
+Moon.move(310, 60)  # Move Moon
 Moon.scale(0.7)  # Scale Moon to 50%
 
 # = Stars =
@@ -124,7 +124,7 @@ Moon.scale(0.7)  # Scale Moon to 50%
 Stars = Layer()
 
 # Little Star Generator
-for i in range(26):
+for i in range(10):
     Star = Layer()
     star = Circle(10);star_ = Circle(10)
     star.stretch(4, 1);star_.stretch(1, 4)
@@ -132,11 +132,11 @@ for i in range(26):
     star.setBorderWidth(0);star_.setBorderWidth(0)
     Star.add(star);Star.add(star_)
     Star.scale(random.uniform(0.05, 0.07))
-    Star.move(random.randrange(10, 440),random.randrange(-410,320))  # Move Star to random position (Margin 10px)
+    Star.move(random.randrange(10, 440),random.randrange(10,140))  # Move Star to random position (Margin 10px)
     Stars.add(Star)
 
 # Big Star Generator
-for i in range(8):
+for i in range(5):
     Star = Layer()
     star = Circle(10);star_ = Circle(10)
     star.stretch(4, 1);star_.stretch(1, 4)
@@ -145,7 +145,7 @@ for i in range(8):
     Star.add(star);Star.add(star_)
     #Star.rotate(random.randrange(0,360))
     Star.scale(random.uniform(0.07, 0.25))
-    Star.move(random.randrange(0, 270),random.randrange(-410,320))  # Move Star to random position (Margin 10px)
+    Star.move(random.randrange(0, 270),random.randrange(10,140))  # Move Star to random position (Margin 10px)
     Stars.add(Star)
 
 
@@ -276,6 +276,9 @@ Trains = Layer()
 # Main Train
 MTrain = Layer()
 
+
+
+
 train_main = Rectangle(60, 25)
 train_main.setBorderWidth(0)  # No border
 train_main.setFillColor(ImageColor.getcolor("#190A09","RGB"))
@@ -283,23 +286,13 @@ train_main.setFillColor(ImageColor.getcolor("#190A09","RGB"))
 train_mainUpper = Rectangle(50, 10)
 train_mainUpper.setBorderWidth(0)  # No border
 train_mainUpper.setFillColor(ImageColor.getcolor("#190A09","RGB"))
-train_mainUpper.move(0, -10)
-
-train_mainWindow = Rectangle(25,7)
-train_mainWindow.setBorderWidth(0)  # No border
-train_mainWindow.setFillColor(ImageColor.getcolor("#FDA22B","RGB"))
-train_mainWindow.move(-16, -3)
-
-train_mainWindow_ = train_mainWindow.clone()
-train_mainWindow_.move(29, 0)
+train_mainUpper.move(0, -11)
 
 
-MTrain.add(train_main);MTrain.add(train_mainUpper);MTrain.add(train_mainWindow);MTrain.add(train_mainWindow_)
+
+MTrain.add(train_main);MTrain.add(train_mainUpper)
 
 MTrain.move(130, 436)
-
-
-
 Trains.add(MTrain)
 # Train Cabin Generator
 
@@ -371,121 +364,23 @@ PoB.move(300,0)
 Moon.move(0, -100)
 Stars.move(0,-100)
 
-# Zoom test ( NOT WORK PROPERLY )
-# canvas.zoomView(50, Point(114,434))
 
-# for i in range(50):
-#     canvas.zoomView(0.9, Point(114,434))
-#     sleep(0.01)
-
-# # =  1. Animation =
-# for i in range(100):
-#     PoB.move(1, 0)
-#     # if i % 100 == 0:
-#     #     Clouds.move(1,0)
-#     Mountains.move(0.05, 0)
-#     Sun.move(0.001,0)
-#     # if i % 50 == 0:
+# = Animation =
+for i in range(100):
+    PoB.move(1, 0)
+    # if i % 100 == 0:
+    #     Clouds.move(1,0)
+    Mountains.move(0.05, 0)
+    Sun.move(0.001,0)
+    # if i % 50 == 0:
      
-#     sleep(0.05)
+    sleep(0.05)
     
-# Transition
-# for i in range(500):
-#     Background.move(0,1)
-#     Foreground.move(0,2)
-#     # sleep(0.01) waht? lag
+for i in range(1000):
+    Background.move(0,1)
+    Foreground.move(0,2)
+    sleep(0.05)
     
-# 최적화
-Background.remove(Gradient)
-Background.remove(Sun)
-Background.remove(Seas)
-Background.remove(Mountains)
-Background.remove(Clouds)
-canvas.remove(Foreground)
-    
-Test = Circle(100)
-canvas.add(Test)
-
-
-
-
-################################################################
-# ######## BRICKOUT GAME START##### ############################
-################################################################
-
-# Main Train -> Player
-Trains = Layer()
-MTrain = Layer()
-
-train_main = Rectangle(60, 25)
-train_main.setBorderWidth(0)  # No border
-train_main.setFillColor(ImageColor.getcolor("#190A09","RGB"))
-train_mainUpper = Rectangle(50, 10)
-train_mainUpper.setBorderWidth(0)  # No border
-train_mainUpper.setFillColor(ImageColor.getcolor("#190A09","RGB"))
-train_mainUpper.move(0, -10)
-train_mainWindow = Rectangle(25,7)
-train_mainWindow.setBorderWidth(0)  # No border
-train_mainWindow.setFillColor(ImageColor.getcolor("#FDA22B","RGB"))
-train_mainWindow.move(-16, -3)
-train_mainWindow_ = train_mainWindow.clone()
-train_mainWindow_.move(29, 0)
-MTrain.add(train_main);MTrain.add(train_mainUpper);MTrain.add(train_mainWindow);MTrain.add(train_mainWindow_)
-MTrain.move(130, 436)
-Trains.add(MTrain)
-
-# 메인 기차와 한량만 추가
-Train = Layer()
-train_cabin = Rectangle(70, 25);train_cabin_ = Rectangle(70, 25);train_cabin__ = Rectangle(70, 25)
-train_cabin.setFillColor(ImageColor.getcolor("#410D42","RGB")) #410D42  # Set Cabin Color
-train_cabin_.setFillColor(ImageColor.getcolor("#190946","RGB")) #190946  # Set Cabin Color
-train_cabin__.setFillColor(ImageColor.getcolor("#190A09","RGB")) #090A09  # Set Cabin Color
-train_cabin_.stretch(1, 0.90);train_cabin__.stretch(1, 0.9) # Make Depth
-train_cabin_.move(0,1);train_cabin__.move(0,3)  # Make Depth
-train_window = Rectangle(17, 7)
-train_window.setFillColor(ImageColor.getcolor("#FDA22B","RGB"))  # Set Window Color
-train_window.move(-20,-3)
-train_window_ = train_window.clone()
-train_window_.move(20,0)
-train_window__ = train_window_.clone()
-train_window__.move(20,0)
-train_connectingRod = Rectangle(5, 5)
-train_connectingRod.setFillColor(ImageColor.getcolor("#190A09","RGB"))  # Set Connecting Rod Color
-train_connectingRod.move(-38, 8)
-# No Border
-train_cabin.setBorderWidth(0);train_cabin_.setBorderWidth(0);train_cabin__.setBorderWidth(0)
-train_window.setBorderWidth(0);train_window_.setBorderWidth(0);train_window__.setBorderWidth(0)
-train_connectingRod.setBorderWidth(0)
-# Add to Train Layer
-Train.add(train_cabin);Train.add(train_cabin_);Train.add(train_cabin__)
-Train.add(train_window);Train.add(train_window_);Train.add(train_window__)
-Train.add(train_connectingRod)
-Train.move(200, 436)  # move For make N trains
-Trains.add(Train) # Add to Trains Layer
-
-# Train이 옆에서 나오는 모션 연출
-Trains.moveTo(0,0)
-canvas.add(Trains)
-
-Trains.adjustReference(168, 436)
-print(Trains.getReferencePoint())
-
-
-# for i in range(100):
-#     Trains.move(-1,0)
-#     sleep(0.01)
-
-
-
-# Wait
-
-
-
-
-
-
-
-
 
 # = Helper =
 drawReferencePoints(canvas)
@@ -494,29 +389,11 @@ markClicks(canvas)
 
 
 
-# ==== 2. Animation ====
+# ==== Animation ====
 
     
     
     
-
-
-
-# ============= BRICKOUT =============
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
