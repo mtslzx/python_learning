@@ -8,6 +8,9 @@ import random
 from PIL import ImageColor
 
 '''
+!!! Repl의 Output을 전체화면으로 만들고 실행해주세요 !!!
+!!! Output 옆의 [...] 클릭 -> [Maximize] 클릭 !!!
+
 2022010844
 컴퓨터과학과 하일환
 설명 :
@@ -288,7 +291,7 @@ class Comet:
         self.layer.moveTo(x,y)
         self.layer.scale(0.5)
         self.cnt = self.sizeUpCnt = 0
-        canvas.add(self.layer)
+        Background.add(self.layer)
     def drop(self, velX, velY):
         '''
         destroy(self) 호출시 마다 살별의 생명이 1씩 감소, 0보다 작다면 제거 후 True 반환
@@ -303,7 +306,7 @@ class Comet:
                     self.layer.scale(self.deadSize)  # 작아지는 값 변경 가능
                     self.life -= 1
         else:
-            canvas.remove(self.layer)
+            Background.remove(self.layer)
             del self
             return True
 
@@ -615,10 +618,10 @@ Stars.move(0,-100)
 # # = Helper =
 
 
-j = c4 = cnt4 = c9 = cnt9 = 0
+j = c2022yh = cnt2022yh = c9 = cnt9 = 0
 
 # =  1. Animation =  ( PERFORMANCE OPTIMIZED )
-for i in range(250):
+for i in range(350):
     PoB.move(2, 0)
     # if i % 100 == 0:
     #     Clouds.move(1,0)
@@ -629,12 +632,12 @@ for i in range(250):
     if i >= 200:
         Trains.move(-(0.001 + (0.01 * j * j)), 0)
         j += 1
-        
-    if c4 == cnt4:
-        comets["comets{0}".format(c4)] = Comet(random.randrange(160, 450),random.randrange(-20, 40),15, 0.27, 0.9)
-        cnt4 += 1  # 살별 중복 생성 방지
-    if comets["comets{0}".format(c4)].drop(-2, 1) == True:  # 살별 생명 감소 및 삭제
-        c4 += 1  # 다음 살별로 넘어가기
+
+    if c2022yh == cnt2022yh:
+        comets["comets{0}".format(c2022yh)] = Comet(random.randrange(160, 450),random.randrange(-20, 40),15, 0.27, 0.9)
+        cnt2022yh += 1  # 살별 중복 생성 방지
+    if comets["comets{0}".format(c2022yh)].drop(-2, 1) == True:  # 살별 생명 감소 및 삭제
+        c2022yh += 1  # 다음 살별로 넘어가기
     if c9 == cnt9:
         comets1["comets{0}".format(c9)] = Comet(random.randrange(40, 350),random.randrange(20, 130),7, 0.11, 0.9)
         cnt9 += 1  # 살별 중복 생성 방지
@@ -642,10 +645,63 @@ for i in range(250):
         c9 += 1  # 다음 살별로 넘어가기
     sleep(0.01)
     
-# Transition
-for i in range(500):
-    Background.move(0,1)
-    Foreground.move(0,2)
+# # Try to delete comets
+# try:
+#     canvas.remove(comets["comets{0}".format(c2022yh)])
+#     print(f"Success: Delete comets in canvas c2022yh")
+# except:
+#     print(f"Error: No comets in canvas c2022yh")
+#     pass
+
+# try:
+#     canvas.remove(comets1["comets{0}".format(c9)])
+#     print(f"Success: Delete comets in canvas c9")
+# except:
+#     print(f"Error: No comets in canvas c9")
+#     pass
+
+# try:
+#     canvas.remove(comets["comets{0}".format(c2022yh - 1)])
+#     print(f"Success: Delete comets in canvas c2022yh - 1")
+# except:
+#     print(f"Error: No comets in canvas c2022yh - 1")
+#     pass
+
+# try:
+#     canvas.remove(comets1["comets{0}".format(c9 - 1)])
+#     print(f"Success: Delete comets in canvas c9 - 1")
+# except:
+#     print(f"Error: No comets in canvas c9 - 1")
+#     pass
+
+# try:
+#     canvas.remove(comets["comets{0}".format(c2022yh + 1)])
+#     print(f"Success: Delete comets in canvas c2022yh + 1")
+# except:
+#     print(f"Error: No comets in canvas c2022yh + 1")
+#     pass
+
+# try:
+#     canvas.remove(comets1["comets{0}".format(c9 + 1)])
+#     print(f"Success: Delete comets in canvas c9 + 1")
+# except:
+#     print(f"Error: No comets in canvas c9 + 1")
+#     pass
+
+# Transition (PERFORMANCE OPTIMIZED)
+for i in range(250):
+    if c2022yh == cnt2022yh:
+        comets["comets{0}".format(c2022yh)] = Comet(random.randrange(160, 450),random.randrange(-20, 40),15, 0.27, 0.9)
+        cnt2022yh += 1  # 살별 중복 생성 방지
+    if comets["comets{0}".format(c2022yh)].drop(-2, 1) == True:  # 살별 생명 감소 및 삭제
+        c2022yh += 1  # 다음 살별로 넘어가기
+    if c9 == cnt9:
+        comets1["comets{0}".format(c9)] = Comet(random.randrange(40, 350),random.randrange(20, 130),7, 0.11, 0.9)
+        cnt9 += 1  # 살별 중복 생성 방지
+    if comets1["comets{0}".format(c9)].drop(-1, 1) == True:  # 살별 생명 감소 및 삭제
+        c9 += 1  # 다음 살별로 넘어가기
+    Background.move(0,2)
+    Foreground.move(0,4)
     # sleep(0.01) waht? lag
     
 # 최적화
