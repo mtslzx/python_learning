@@ -2,15 +2,20 @@
 
 N = int(input())
 A = list(map(int, input().split()))
-defStat = float(0)
+defStat = 0.0
 for i in range(N):
-    defStat = round(1.0 - (1.0 - round(defStat,6)) * (1.0 - round(A[i]/100,6)),6) # [1]
+    new_defStat = round(1.0 - (1.0 - round(defStat,7)) * (1.0 - round(A[i]/100,7)),7) # [1]
+    print(round(new_defStat*100,7))
+    defStat = new_defStat
     # a = round(float("%g" %(defStat*100)),6)
     # if a == round(a):
     #     print(f"{a:.1f}")
     # else:
     #     print(a)
     # print(f"{round(defStat*100,6):.6f}")
+        
+# defStat = 1 - (1 - defStat) * (1 - A[i]/100)
+
         
 # 20 20 20 20 20
 # 1 - ( 1- 0.0 ) * (1 - 0.2) = 0.16
