@@ -1,0 +1,5 @@
+
+
+x = print("AAAA")
+
+x
