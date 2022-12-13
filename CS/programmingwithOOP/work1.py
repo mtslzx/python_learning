@@ -1,5 +1,5 @@
 
-
+# TODO: FIX THIS CODE
 
 class Matrix:
     """행렬을 추상화한 class 정의"""
@@ -31,7 +31,7 @@ class Matrix:
         return list(map(list, self.data))
     
     def __str__(self):
-        return str(self.data).replace("], ", "]\n").replace("[[", "[").replace("]]", "]")
+        return str(self.data).replace("], ", "]\n").replace("[[", "[").replace("]]", "]")  # 문자열 처리로 해결하기
     
     def __repr__(self):  # https://shoark7.github.io/programming/python/difference-between-__repr__-vs-__str__
         pass 
@@ -88,16 +88,20 @@ if __name__ == "__ma__":
     print(m1)
     
     print("print(m1.getTranspose())")
-    print(m1.getTranspose())
+    print(m1.getTranspose()) 
+    print("print(m1)")
+    print(m1)
     
+    print("print(m1.doTranspose())")
+    print(m1.doTranspose()) 
     print("print(m1)")
     print(m1)
-    print("print(m1)")
-    print(m1)
-    print("print(m1)")
-    print(m1)
-    print("print(m1)")
-    print(m1)
-    print("print(m1)")
-    print(m1)
+    
+    m2 = m1 * 3
+    print("print(m2)")
+    print(m2)
+    
+    m3 = m1 + m2
+    print("print(m3)")
+    print(m3)
                                     
