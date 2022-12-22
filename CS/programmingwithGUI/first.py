@@ -11,6 +11,7 @@ if __name__ == '__main__':
     l2 = Label(window, text="이름")
     e2 = Entry(window)
     l3 = Label(window, text="학과:  이름: ")
+
     def process():
         global txt
         l3.config(text = f"학과: {e1.get()} 이름: {e2.get()} ")

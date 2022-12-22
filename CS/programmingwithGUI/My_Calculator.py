@@ -1,7 +1,12 @@
 from tkinter import *
 from math import *
 
-def Clear():
+
+def setClear() -> None:
+    """
+
+    :rtype: None
+    """
     display.delete(0, 'end')
 
 class Calculator:
@@ -9,23 +14,23 @@ class Calculator:
         self.string = string
         
     def sin(self, string):
-        Clear()
+        setClear()
         return sin(radians(int(string)))
     
     def cos(self, string):
-        Clear()
+        setClear()
         return cos(radians(int(string)))
     
     def sqrt(self, string):
-        Clear()
+        setClear()
         return ceil(sqrt((float(string))))
     
     def log(self, string):
-        Clear()
+        setClear()
         return ceil(log(float(string)))
     
     def result(self, string):
-        Clear()
+        setClear()
         return eval(string)
         
 calculator = Calculator("Initializing")
@@ -48,7 +53,7 @@ for button_text in button_list:
     def process(t=button_text):
         print(f"[정보] input = {t}")
         if t == "C":
-            Clear()
+            setClear()
         elif t == "del":
             display.delete(len(display.get())-1, 'end')
         elif t == "🥧":
