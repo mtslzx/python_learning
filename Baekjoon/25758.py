@@ -12,7 +12,7 @@ for idx, val in enumerate(inputList):
             pass
         else:  # key 값이 아닐경우
             compare = list(compare)  # 앞에 쓰지 않는 이유는 None의 경우에 list()를 쓰면 에러가 발생하기 때문
-            # 어쨌거나 우린 "2"세대 유전자의 "표현형"만 구하면 되므로, 역순정렬을 통해 맨 얖 표현형만 확인한다.
+            # 어쨌거나 우린 "2"세대 유전자의 "표현형"만 구하면 되므로, 역순정렬을 통해 맨 앞의 표현형만 확인한다.
             outputList.append(sorted(key[0] + compare[1], reverse=True)[0])  # 출력리스트에 조합 저장  # 첫번째 유전자의 첫번째 문자와 두번째 유전자의 두번째 문자를 합침, 그리고 표현형만 확인하기 위해, 영어를 역순으로 했을 때 만 앞의 글자만 출력
     inputList[idx] = val  # 다시 key 자리에 넣어줌
 result = sorted(list(set(outputList)))  # 중복 제거
