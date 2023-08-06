@@ -14,6 +14,19 @@ This repository was created to organize and archive learning progress.
 ## Before start learning
 Take some coffee.
 
+## Folder Structure
+    .
+    ├── Baekjoon              # Archive the pool of Baekjun Online Judge.
+    ├── CS                    # A folder that stores the contents learned while taking computer science major courses.
+    ├── DLF                   
+    ├── nomad                    
+    ├── Programmers                  
+    ├── temp
+    └── README.md
+
+
+## Future Plans
+I plan to commit after studying computer science at least 3 times a week.
 
 ---
 > GNU CS 2022

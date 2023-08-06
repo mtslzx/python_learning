@@ -8,3 +8,4 @@ print(f"{min(arr)} {max(arr)}")
 # https://rebro.kr/126
 # Github Copilot: https://github.com/
 # Python is so easy
+# https://www.acmicpc.net/problem/10818
