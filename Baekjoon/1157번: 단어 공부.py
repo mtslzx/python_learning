@@ -10,9 +10,10 @@
 #                                                                              #
 #  **************************************************************************  #
 
+# 처음에는 for문으로 아스키코드 쭉 돌릴까 생각했었음.
 # https://blockdmask.tistory.com/410 리스트 카운트
-# https://jsikim1.tistory.com/214 리스트 중복 제거
-# https://www.freecodecamp.org/korean/news/python-dictionary-methods/ 딕셔너리 fromkeys 메소드
+# https://jsikim1.tistory.com/214 리스트 중복 제거 set() 함수
+# https://www.freecodecamp.org/korean/news/python-dictionary-methods/ 딕셔너리 .fromkeys() 메소드
 # https://blockdmask.tistory.com/566 딕셔너리에서 value를 기반으로 정렬하기
 
 lst = list(input().upper())  # .upper() 메소드를 사용하여 소문자를 대문자로 만들었다.
@@ -33,3 +34,5 @@ else:
     else:
         print(result[0][0])  # 모든 예외상황이 없다면 정상적으로 결과 출력
  
+ # 체점결과: 정답. 40044kb	1940ms
+ # 다른분들의 정답을 보면 80~100ms로도 끝나는 코드가 다수, 코드의 최적화에 실패한듯함. max() 함수와 .count() 메소드를 잘 활용해야할듯? 거의 시간초과날뻔함..
