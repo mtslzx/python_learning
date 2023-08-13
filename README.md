@@ -7,7 +7,7 @@ This repository was created to organize and archive learning progress.
 - Pillow
 - cs1robots
 - (python_challenge, make_webscraper_with_python)
-- beautifulsoap4
+- beautifulsoup4
 - requests
 - 
 
