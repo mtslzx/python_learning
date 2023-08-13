@@ -1,5 +1,6 @@
 # python_learning
-![](https://img.shields.io/badge/Python-blue?style=flat-square&logo=python&logoColor=white)
+![](https://img.shields.io/badge/Python-blue?style=for-the-badge&logo=python&logoColor=white)
+
 This repository was created to organize and archive learning progress.
 
 ## Enviornment
