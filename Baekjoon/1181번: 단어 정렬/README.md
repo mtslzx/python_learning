@@ -1,8 +1,7 @@
 # 1181번: 단어 정렬 - <img src="https://static.solved.ac/tier_small/6.svg" style="height:20px" /> Silver V
 
 <!-- performance -->
-
-PASSED 33708KB 916ms
+![](https://img.shields.io/badge/BOJ-Passed-Success?style=flat-square) ![](https://img.shields.io/badge/Size-33708KB-informational?style=flat-square) ![](https://img.shields.io/badge/Time-916ms-informational?style=flat-square)
 
 우선 조건을 살펴보면,
 1. 길이가 짧은 순으로는 각 단어의 길이를 len() 함수로 계산해 .sort()로 정렬하면 간단하게 해결될 것이다..
