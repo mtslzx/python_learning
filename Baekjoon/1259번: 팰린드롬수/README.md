@@ -2,15 +2,21 @@
 
 <!-- performance -->
 
-![](https://img.shields.io/badge/BOJ-Failed-critical?style=flat-square) ![](https://img.shields.io/badge/Size-0KB-informational?style=flat-square) ![](https://img.shields.io/badge/Time-0ms-informational?style=flat-square)
+![](https://img.shields.io/badge/BOJ-Passed-Success?style=flat-square) ![](https://img.shields.io/badge/Size-34906KB-informational?style=flat-square) ![](https://img.shields.io/badge/Time-72ms-informational?style=flat-square)
 
 팰린드롬수는 앞뒤로 어떻게 읽어도 같은 수이니 가운데까지만 확인하면 될 것 같다.
 우선 문자열을 입력받은 뒤, 문자열을 리스트로 만들고 리스트를 앞과 뒤, 그리고 가운데 값을 분리한다.
 아, 그냥 pop, popleft로 리스트 양쪽 끝에서 하나씩 빼서 교차 검증을 하면 될 것 같다.
 오류를 방지하기 위해 가운데 값은 먼저 제거하고, 리스트의 길이를 계산해 반복문을 돌려주자.
 
+가운데 값을 제거할 필요는 없었고, 리스트의 양쪽 끝에서 부터 하나씩 pop을 통해 값을 빼오는 방식이다.
+양 끝값이 다를 경우 팰린드롬수가 아니므로 아니라고 출력한다.
+그렇게 덱에서 값을 빼다가 남은 원소가 하나 (문자열의 길이가 홀수인 경우) 또는 원소가 없을 경우 (문자열의 길이가 짝수인 경우). 양 끝의 모든 원소가 일치하는 것을 확인하였으므로 팰린드롬수가 맞다고 출력한다.
+
 팰린드롬수는 무조건 홀수여야 가능하다고 생각했는데 그게 아니었다...
 짝수인 경우도 있었으므로 다시 코드를 짜야한다.
+
+마지막으로 빼먹은 조건이 한자리수인 경우이다. 한자리수는 그 자체로 팰린드롬수라고 볼 수 있으므로, 한자리수에 대한 예외를 만들었다.
 
 <!-- end -->
 
