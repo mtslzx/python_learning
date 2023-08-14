@@ -2,7 +2,7 @@
 
 <!-- performance -->
 
-![](https://img.shields.io/badge/BOJ-Passed-Success?style=flat-square) ![](https://img.shields.io/badge/Size-34906KB-informational?style=flat-square) ![](https://img.shields.io/badge/Time-72ms-informational?style=flat-square)
+![](https://img.shields.io/badge/Python-3670A0?style=flat-square&logo=python&logoColor=white) ![](https://img.shields.io/badge/BOJ-Passed-Success?style=flat-square) ![](https://img.shields.io/badge/Size-34906KB-informational?style=flat-square) ![](https://img.shields.io/badge/Time-72ms-informational?style=flat-square)
 
 팰린드롬수는 앞뒤로 어떻게 읽어도 같은 수이니 가운데까지만 확인하면 될 것 같다.
 우선 문자열을 입력받은 뒤, 문자열을 리스트로 만들고 리스트를 앞과 뒤, 그리고 가운데 값을 분리한다.
