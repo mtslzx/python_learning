@@ -2,11 +2,11 @@
 
 <!-- performance -->
 
-![](https://img.shields.io/badge/BOJ-Failed-critical?style=flat-square) ![](https://img.shields.io/badge/Size-0KB-informational?style=flat-square) ![](https://img.shields.io/badge/Time-0ms-informational?style=flat-square)
+![](https://img.shields.io/badge/Python-3670A0?style=flat-square&logo=python&logoColor=white) ![](https://img.shields.io/badge/BOJ-Failed-critical?style=flat-square) ![](https://img.shields.io/badge/Memory_Usage-0KB-informational?style=flat-square) ![](https://img.shields.io/badge/Time_Spend-0ms-informational?style=flat-square)
 
 문제 이해가 제대로 안됨...
 8x8  이상의 데이터가 주어졌을때 어디를 잘라내게 만들어야할지 감이 안잡힘..
-나중에 다시 시도할 예정.
+나중에 다시 시도할 예정. - 23/08/13
 
 <!-- end -->
 
