@@ -17,6 +17,8 @@ The i#put consists ofN test ca#es. The number... 처럼 다음 줄을 띄워주�
 개인적으로 이번에 작성한 코드가 매우 짧고 간결해서 만족한다!
 round() 함수를 사용하지 않고 f-string을 통해 출력한 부분도 나름 좋다고 생각한다.
 
+숏코딩 순위에도 올라갔다~~!
+
 <!-- end -->
 
 ## 문제
