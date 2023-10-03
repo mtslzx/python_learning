@@ -2,7 +2,12 @@
 
 <!-- performance -->
 
-<!-- 문제 제출 후 깃허브에 푸시를 했을 때 제출한 코드의 성능이 입력될 공간입니다.-->
+![](https://img.shields.io/badge/Python-3670A0?style=flat-square&logo=python&logoColor=white) ![](https://img.shields.io/badge/BOJ-Passed-Success?style=flat-square) ![](https://img.shields.io/badge/Memory_Usage-34104KB-informational?style=flat-square) ![](https://img.shields.io/badge/Time_Spend-80ms-informational?style=flat-square)![](https://img.shields.io/badge/Code_Length-45_Byte-goodt?style=flat-square)
+
+파이썬 한정..? 쉬운 문제. 각 손님이 앉고 싶어 하는 자리는 먼저 온 사람이 선점하면 앉을 수 없으므로 각 손님이 앉고 싶어하는 자리들 중 중복되는 값을 제외한다.
+이렇게 되면 늦게와서 원하는 자리를 잡지 못하는 손님이 빠졌으므로, 총 손님의 수 N에서 현재 앉아있는 (먼저 자리를 선점한) 손님의 수를 빼주면 거절당한 손님의 수를 얻을 수 있다.
+
+45B의 코드 길이로 문제를 해결했다!
 
 <!-- end -->
 
